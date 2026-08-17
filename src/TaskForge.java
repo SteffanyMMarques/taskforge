@@ -1,6 +1,14 @@
 void main() {
     String nomeDaTarefa = IO.readln("Digite o nome da Tarefa: ");
-    int prioridade = Integer.parseInt(IO.readln("Digite a prioridade da tarefa: "));
+    IO.println("Escolha a prioridade: ");
+    IO.println("1 - Alta");
+    IO.println("2 - Média");
+    IO.println("3 - Baixa");
+    int prioridade = Integer.parseInt(IO.readln("Escolha uma opção 1, 2 ou 3: "));
+    while (prioridade < 1 || prioridade > 3) {
+        IO.println("Opção inválida! ");
+        prioridade = Integer.parseInt(IO.readln("Escolha uma opção 1, 2 ou 3: "));
+    }
     boolean concluida = false;
     int opcao;
     do {
