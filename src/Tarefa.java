@@ -1,14 +1,18 @@
 package src;
 
-public class Tarefa {
+public abstract class Tarefa {
+
+    // ATRIBUTOS
     private String nome;
     private String descricao;
     private int prioridade;
     private String responsavel;
     private double horasEstimadas;
-    private int status;
+    private TarefaStatus status;
 
-    public Tarefa(String nome, String descricao, int prioridade, String responsavel, double horasEstimadas, int status) {
+    // CONSTRUTOR COM ARGUMENTOS
+    public Tarefa(String nome, String descricao, int prioridade, String responsavel,
+                  double horasEstimadas, TarefaStatus status) {
         this.nome = nome;
         this.descricao = descricao;
         this.prioridade = prioridade;
@@ -17,6 +21,17 @@ public class Tarefa {
         this.status = status;
     }
 
+    // CONSTRUTOR COM TÍTULO
+    public Tarefa(String titulo) {
+        this.nome = titulo;
+    }
+
+    // MÉTODOS ABSTRATOS
+    public abstract String tipo();
+
+    public abstract String resumo();
+
+    // MÉTODOS ACESSÓRIOS
     public String getNome() {
         return nome;
     }
@@ -57,14 +72,11 @@ public class Tarefa {
         this.horasEstimadas = horasEstimadas;
     }
 
-    public int getStatus() {
+    public TarefaStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(TarefaStatus status) {
         this.status = status;
     }
 }
-
-
-
