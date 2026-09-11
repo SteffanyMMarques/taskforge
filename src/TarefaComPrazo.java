@@ -1,6 +1,6 @@
 package src;
 
-public class TarefaComPrazo extends Tarefa {
+public class TarefaComPrazo extends Tarefa implements Notificavel {
 
     double tempoLimite;
 
@@ -10,18 +10,16 @@ public class TarefaComPrazo extends Tarefa {
         this.tempoLimite = tempoLimite;
     }
 
-    @Override
     public String tipo() {
-        return "TAREFA COM PRAZO";
+        return "tarefa com Prazo";
     }
 
-    @Override
-    public String resumo() {
-        return "Tarefa: " + getNome()
-                + " - Descrição: " + getDescricao()
-                + " - Prioridade: " + getPrioridade()
-                + " - Responsável: " + getResponsavel()
-                + " - Status: " + getStatus().getDescricao()
-                + " - Tempo limite: " + tempoLimite;
+    public void resumo() {
+        super.resumo();
+        IO.println("Tempo limite: " + this.tempoLimite);
+    }
+
+    public String notificar() {
+        return "Lembrete: '" + getNome() + "' vence em " + tempoLimite + " horas!";
     }
 }

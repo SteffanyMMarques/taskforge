@@ -7,17 +7,8 @@ public class TarefaSimples extends Tarefa {
         super(nome, descricao, prioridade, responsavel, horasEstimadas, status);
     }
 
-    @Override
+    // So o tipo(): o resumo() da mae ja resolve o resto.
     public String tipo() {
-        return "TAREFA SIMPLES";
-    }
-
-    @Override
-    public String resumo() {
-        return "Tarefa: " + getNome()
-                + " - Descrição: " + getDescricao()
-                + " - Prioridade: " + getPrioridade()
-                + " - Responsável: " + getResponsavel()
-                + " - Status: " + getStatus().getDescricao();
+        return "tarefa Simples";
     }
 }
