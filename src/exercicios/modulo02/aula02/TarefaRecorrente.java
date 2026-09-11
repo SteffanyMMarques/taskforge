@@ -1,5 +1,6 @@
 package src.exercicios.modulo02.aula02;
 
+import src.Notificavel;
 import src.Tarefa;
 
 public class TarefaRecorrente extends Tarefa implements Notificavel {
