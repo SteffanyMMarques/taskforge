@@ -6,12 +6,10 @@ import br.com.docodigoaocontrato.taskforge.repository.TarefaRepository;
 import br.com.docodigoaocontrato.taskforge.service.TarefaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TarefaController {
@@ -44,9 +42,27 @@ public class TarefaController {
         return tarefaRepository.count();
     }
 
+    @GetMapping("/tarefas/{id}")
+    public ResponseEntity<TarefaDTO> buscarTarefaPorId(@PathVariable Long id) {
+        Optional<TarefaDTO> tarefaDTO = tarefaService.buscarTarefaPorId(id);
+        if (tarefaDTO.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(tarefaDTO.get());
+    }
+
     @PostMapping("/tarefas")
     public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaDTO tarefaDTO) {
         TarefaDTO tarefaCriada = tarefaService.criarTarefa(tarefaDTO);
-                return ResponseEntity.status(HttpStatus.CREATED).body(tarefaCriada);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tarefaCriada);
+    }
+
+    @PutMapping("/tarefas/{id}")
+    public ResponseEntity<TarefaDTO> atualizarTarefa(@PathVariable Long id, @RequestBody TarefaDTO tarefaDTO) {
+        Optional<TarefaDTO> tarefaAtualizada = tarefaService.atualizarTarefa(id, tarefaDTO);
+        if (tarefaAtualizada.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(tarefaAtualizada.get());
     }
 }

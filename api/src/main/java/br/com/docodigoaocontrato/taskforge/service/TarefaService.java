@@ -6,11 +6,17 @@ import br.com.docodigoaocontrato.taskforge.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TarefaService {
 
     private final TarefaRepository tarefaRepository;
+
+    public Optional<TarefaDTO> buscarTarefaPorId(Long id) {
+        return tarefaRepository.findById(id)
+                .map(tarefa -> toDto(tarefa));
+    }
 
     public TarefaService(TarefaRepository tarefaRepository) {
         this.tarefaRepository = tarefaRepository;
@@ -18,6 +24,20 @@ public class TarefaService {
 
     public List<TarefaDTO> buscarTodos() {
         return tarefaRepository.findAll().stream().map(tarefa -> toDto(tarefa)).toList();
+    }
+
+    public Optional<TarefaDTO> atualizarTarefa(Long id, TarefaDTO tarefaDTO) {
+        Optional<Tarefa> tarefaRecuperada = tarefaRepository.findById(id);
+        if (tarefaRecuperada.isPresent()) {
+            Tarefa tarefa = tarefaRecuperada.get();
+            tarefa.setNome(tarefaDTO.getNome());
+            tarefa.setConcluida(tarefaDTO.isConcluida());
+            tarefa.setPrioridade(tarefaDTO.getPrioridade());
+           return Optional.of(toDto(tarefaRepository.save(tarefa)));
+        }
+        return Optional.empty();
+
+
     }
 
     private TarefaDTO toDto(Tarefa tarefa) {
