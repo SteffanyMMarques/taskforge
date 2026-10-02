@@ -1,4 +1,4 @@
-package br.com.docodigoaocontrato.taskforge;
+package br.com.docodigoaocontrato.taskforge.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

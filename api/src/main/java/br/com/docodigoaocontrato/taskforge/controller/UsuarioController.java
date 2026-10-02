@@ -1,7 +1,7 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
 import br.com.docodigoaocontrato.taskforge.dto.UsuarioDTO;
-import br.com.docodigoaocontrato.taskforge.model.UsuarioRepository;
+import br.com.docodigoaocontrato.taskforge.repository.UsuarioRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;

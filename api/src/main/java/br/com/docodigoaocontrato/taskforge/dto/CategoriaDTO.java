@@ -1,6 +1,6 @@
 package br.com.docodigoaocontrato.taskforge.dto;
 
-import br.com.docodigoaocontrato.taskforge.Categoria;
+import br.com.docodigoaocontrato.taskforge.model.Categoria;
 
 public class CategoriaDTO {
     private Long id;
@@ -18,4 +18,11 @@ public class CategoriaDTO {
     public String getNome() {
         return nome;
     }
+
+//    public String getDescicao() {
+//        return descricao;
+//    }
+//
+//    public String getAutor() {
+//    }
 }

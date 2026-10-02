@@ -1,7 +1,9 @@
 package br.com.docodigoaocontrato.taskforge;
 
+import br.com.docodigoaocontrato.taskforge.model.Categoria;
 import br.com.docodigoaocontrato.taskforge.model.Usuario;
-import br.com.docodigoaocontrato.taskforge.model.UsuarioRepository;
+import br.com.docodigoaocontrato.taskforge.repository.CategoriaRepository;
+import br.com.docodigoaocontrato.taskforge.repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

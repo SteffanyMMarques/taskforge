@@ -1,6 +1,6 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
-import br.com.docodigoaocontrato.taskforge.CategoriaRepository;
+import br.com.docodigoaocontrato.taskforge.repository.CategoriaRepository;
 import br.com.docodigoaocontrato.taskforge.dto.CategoriaDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
