@@ -2,6 +2,10 @@ package br.com.docodigoaocontrato.taskforge.repository;
 
 import br.com.docodigoaocontrato.taskforge.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
+    Boolean existsUsuarioByEmail(String email);
 }

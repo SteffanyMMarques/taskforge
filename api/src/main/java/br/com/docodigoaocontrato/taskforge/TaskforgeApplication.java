@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class TaskforgeApplication {
@@ -27,10 +28,15 @@ public class TaskforgeApplication {
             }
 
             if (usuarioRepository.count() == 0) {
-                usuarioRepository.save(new Usuario("Ana", "ana@email.com", true));
-                usuarioRepository.save(new Usuario("Carlos", "carlos@email.com", true));
-                usuarioRepository.save(new Usuario("Bia", "bia@email.com", false));
-                usuarioRepository.save(new Usuario("Daniel", "daniel@email.com", false));
+                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+                usuarioRepository.save(new Usuario(
+                        "Ana", "ana@email.com", encoder.encode("123456")));
+                usuarioRepository.save(new Usuario(
+                        "Carlos", "carlos@email.com", encoder.encode("123456")));
+                usuarioRepository.save(new Usuario(
+                        "Bia", "bia@email.com", encoder.encode("123456")));
+                usuarioRepository.save(new Usuario(
+                        "Daniel", "daniel@email.com", encoder.encode("123456")));
             }
         };
     }

@@ -2,6 +2,7 @@ package br.com.docodigoaocontrato.taskforge.controller;
 
 import br.com.docodigoaocontrato.taskforge.dto.ComentarioDTO;
 import br.com.docodigoaocontrato.taskforge.service.ComentarioService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class ComentarioController {
         return ResponseEntity.ok(comentarioService.listarTodos());
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<ComentarioDTO> buscarPorId(@PathVariable Long id) {
         Optional<ComentarioDTO> comentario = comentarioService.buscarPorId(id);
         if (comentario.isEmpty()) {
@@ -35,13 +36,13 @@ public class ComentarioController {
     @PostMapping
     public ResponseEntity<ComentarioDTO> criarComentario(@RequestBody ComentarioDTO comentarioDTO) {
         ComentarioDTO comentarioCriado = comentarioService.criarComentario(comentarioDTO);
-        return ResponseEntity.ok(comentarioCriado);
+        return ResponseEntity.status(HttpStatus.CREATED).body(comentarioCriado);
     }
 
-    @PutMapping("/atualizarComentario/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ComentarioDTO> atualizarComentario(@PathVariable Long id,
                                                              @RequestBody ComentarioDTO comentarioDTO) {
-        ComentarioService comentarioService = null;
+
         Optional<ComentarioDTO> atualizada = comentarioService.atualizarComentario(id, comentarioDTO);
         if (atualizada.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -49,7 +50,7 @@ public class ComentarioController {
         return ResponseEntity.ok(atualizada.get());
     }
 
-    @DeleteMapping("/excluirComentario/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluirComentario(@PathVariable Long id) {
         if (!comentarioService.deletarComentario(id)) {
             return ResponseEntity.notFound().build();

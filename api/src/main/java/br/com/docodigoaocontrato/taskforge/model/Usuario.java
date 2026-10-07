@@ -4,8 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 public class Usuario {
 
     @Id
@@ -13,19 +20,19 @@ public class Usuario {
     private Long id;
     private String nome;
     private String email;
-    private boolean ativo;
+    private String senha;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, boolean ativo) {
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
-        this.ativo = ativo;
+        this.senha = senha;
     }
 
     public Long getId() { return id; }
     public String getNome() { return nome; }
     public String getEmail() { return email; }
-    public boolean isAtivo() { return ativo; }
+    public String senha() { return senha; }
 }

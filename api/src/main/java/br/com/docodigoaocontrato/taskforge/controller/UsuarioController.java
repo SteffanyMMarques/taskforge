@@ -1,25 +1,39 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
+import br.com.docodigoaocontrato.taskforge.dto.UsuarioCadastroDTO;
 import br.com.docodigoaocontrato.taskforge.dto.UsuarioDTO;
-import br.com.docodigoaocontrato.taskforge.repository.UsuarioRepository;
-import org.springframework.web.bind.annotation.GetMapping;
+import br.com.docodigoaocontrato.taskforge.service.UsuarioService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
+
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/usuarios")
-    public List<UsuarioDTO> listar() {
-        return usuarioRepository.findAll()
-                .stream()
-                .map(UsuarioDTO::new)
-                .toList();
+    @PostMapping
+    public ResponseEntity<UsuarioDTO> cadastrar(
+            @RequestBody UsuarioCadastroDTO usuarioCadastroDTO) {
+
+        Optional<UsuarioDTO> usuarioCriado =
+                usuarioService.cadastrar(usuarioCadastroDTO);
+
+        if (usuarioCriado.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(usuarioCriado.get());
     }
 }
