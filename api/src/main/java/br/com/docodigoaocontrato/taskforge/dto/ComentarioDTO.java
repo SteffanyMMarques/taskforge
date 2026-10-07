@@ -9,11 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TarefaDTO {
+public class ComentarioDTO {
 
     private Long id;
-    private String nome;
-    private int prioridade;
-    private boolean concluida;
-
+    private String descricao;
+    private String autor;
 }

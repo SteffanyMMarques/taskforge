@@ -4,16 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jspecify.annotations.Nullable;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class TarefaDTO {
+@AllArgsConstructor
+public class UsuarioCadastroDTO {
 
-    private Long id;
     private String nome;
-    private int prioridade;
-    private boolean concluida;
-
+    private String email;
+    private String senha;
 }
